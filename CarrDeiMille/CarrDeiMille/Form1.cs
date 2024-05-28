@@ -12,7 +12,7 @@ namespace CarrDeiMille
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //SBAGLIATO DA ELIMINARE ANCHE DA DESIGNER
+            //SBAGLIATO DA ELIMINARE ANCHE DA DESIGNeeeeeeeeeeER
         }
 
         private void DIEGO_Click(object sender, EventArgs e)
