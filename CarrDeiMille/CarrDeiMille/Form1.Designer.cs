@@ -44,6 +44,7 @@
             label2 = new Label();
             cmbVeicoli = new ComboBox();
             label1 = new Label();
+            lblNascosta = new Label();
             menuStrip1.SuspendLayout();
             pnlDiego.SuspendLayout();
             SuspendLayout();
@@ -108,6 +109,7 @@
             // pnlDiego
             // 
             pnlDiego.BackColor = Color.Thistle;
+            pnlDiego.Controls.Add(lblNascosta);
             pnlDiego.Controls.Add(cmbAvviati);
             pnlDiego.Controls.Add(lblVeicoloSelezionato);
             pnlDiego.Controls.Add(btnFine);
@@ -120,7 +122,6 @@
             pnlDiego.Size = new Size(975, 471);
             pnlDiego.TabIndex = 1;
             pnlDiego.Visible = false;
-            pnlDiego.Paint += pnlDiego_Paint;
             // 
             // cmbAvviati
             // 
@@ -195,6 +196,16 @@
             label1.TabIndex = 0;
             label1.Text = "MENU DIEGO";
             // 
+            // lblNascosta
+            // 
+            lblNascosta.AutoSize = true;
+            lblNascosta.Location = new Point(902, 20);
+            lblNascosta.Name = "lblNascosta";
+            lblNascosta.Size = new Size(60, 25);
+            lblNascosta.TabIndex = 7;
+            lblNascosta.Text = "Diego";
+            lblNascosta.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -232,5 +243,6 @@
         private Label lblVeicoloSelezionato;
         private ToolStripMenuItem toolStripMenuItem3;
         private ComboBox cmbAvviati;
+        private Label lblNascosta;
     }
 }

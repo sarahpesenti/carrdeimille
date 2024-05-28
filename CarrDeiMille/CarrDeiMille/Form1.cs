@@ -24,14 +24,15 @@ namespace CarrDeiMille
 
         private void btnInizio_Click(object sender, EventArgs e)
         {
+            string targa;
             if (cmbVeicoli.SelectedItem != "")
             {
 
                 string selezionato = cmbVeicoli.SelectedItem.ToString();
                 DateTime inizio = DateTime.Now;
-
                 string[] s = selezionato.Split(";");
-                string targa = s[0];
+                targa = s[0];
+                int numlav = contalav(targa) + 1;
 
                 int dimLavorazioni = dimFile("lavorazioni");
                 string[] lav = new string[dimLavorazioni];
@@ -41,28 +42,14 @@ namespace CarrDeiMille
                 StreamWriter file_out;
                 file_out = new StreamWriter(nomefile);
                 int cont = 0;
+
                 for (int i = 0; i < dimLavorazioni; i++)
                 {
-                    string[] elem = lav[i].Split(";");
-                    if (elem[0].Equals(targa))
-                    {
-                        //INserire finestra di dialogo "Vuoi terminare la lavorazione sul veicolo" +  targa + "iniziata alle" + inizio...?"
-                        file_out.WriteLine("" + elem[0] + ";DIEGO;" + inizio + ";;");
-                        cont += 1;
-
-                    }
-                    else
-                    {
-                        file_out.WriteLine(lav[i]);
-                    }
-
+                    file_out.WriteLine(lav[i]);
                 }
 
-                if (cont == 0)
-                {
-                    file_out.WriteLine("" + targa + ";" + inizio + ";;");
-                }
-
+                
+                file_out.WriteLine("" + targa + ";" + numlav + ";" + lblNascosta.Text + ";" + inizio + ";;");
 
                 file_out.Close();
 
@@ -82,6 +69,26 @@ namespace CarrDeiMille
         }
 
 
+        //conta lavorazioni relative ad una certa targa
+        public int contalav(string targa)
+        {
+            int n = 0;
+            int dimLavorazioni = dimFile("lavorazioni");
+            string[] lav = new string[dimLavorazioni];
+            caricadafile("lavorazioni", lav);
+            for (int i = 0; i < dimLavorazioni; i++)
+            {
+                string[] s = lav[i].Split(";");
+                if (s[0].Equals(targa))
+                {
+                    n += 1;
+                }
+            }
+            return n;
+        }
+
+
+        //aggiorna combobox
         public void aggiornacmb()
         {
             cmbAvviati.Items.Clear();
@@ -92,13 +99,48 @@ namespace CarrDeiMille
             {
 
                 string[] s = lav[i].Split(";");
-                if (s[1].Equals("DIEGO") && s[3].Equals(""))
+                if (s[2].Equals(lblNascosta.Text) && s[4].Equals(""))
                 {
-                    cmbAvviati.Items.Add(s[0] + ", inizio: " + s[2]);
+                    cmbAvviati.Items.Add(s[0] + ", inizio: " + s[3] + " - " + s[1]);
                 }
             }
 
         }
+
+        //riepilogo tempi alla fine di ogni operazione
+        public void riepilogotempi()
+        {
+            int dimLavorazioni = dimFile("lavorazioni");
+            string[] lav = new string[dimLavorazioni];
+            caricadafile("lavorazioni", lav);
+
+            int dimVeicoli = dimFile("veicoli");
+            string[] veic = new string[dimVeicoli];
+            caricadafile("veicoli", veic);
+
+            for(int i = 0; i < dimVeicoli; i++)
+            {
+                string[] v = veic[i].Split(";");
+                for (int j = 0; j < dimLavorazioni; j++) {
+                    string[] l = lav[j].Split(";");
+                    if (v[0].Equals(l[0]))
+                    {
+                        /*
+                        int diff=0;
+                        DateTime i = new DateTime(l[3]);
+                        DateTime f = new DateTime(l[4]);
+
+                        diff = f - i;
+                        //da approssimare con solo i minuti
+                        v[4] += diff;
+                        */
+                    }
+                }
+            }
+        }
+
+
+
         private void btnFine_Click(object sender, EventArgs e)
         {
             if (cmbAvviati.SelectedItem != "")
@@ -109,6 +151,8 @@ namespace CarrDeiMille
 
                 string[] s = selezionato.Split(",");
                 string targa = s[0];
+                string[] n = s[1].Split(" - ");
+                string nlav = n[1];
 
                 int dimLavorazioni = dimFile("lavorazioni");
                 string[] lav = new string[dimLavorazioni];
@@ -121,9 +165,9 @@ namespace CarrDeiMille
                 for (int i = 0; i < dimLavorazioni; i++)
                 {
                     string[] elem = lav[i].Split(";");
-                    if (elem[0].Equals(targa))
+                    if (elem[0].Equals(targa) && elem[1]==nlav && elem[2].Equals("Diego"))
                     {
-                        file_out.WriteLine("" + elem[0] + ";DIEGO;" + elem[2] + ";" + fine + ";");
+                        file_out.WriteLine("" + elem[0] + ";" + elem[1] +";"+ elem[2]+ ";" + elem[3] + ";" + fine + ";");;
                         cont += 1;
                     }
                     else
@@ -154,10 +198,6 @@ namespace CarrDeiMille
             aggiornacmb();
             cmbAvviati.Text = "";
         }
-
-
-
-
 
 
         static int dimFile(string nome)
@@ -228,10 +268,6 @@ namespace CarrDeiMille
             btnFine.Enabled = true;
         }
 
-        private void pnlDiego_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
