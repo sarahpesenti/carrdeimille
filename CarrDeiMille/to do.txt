@@ -1,7 +1,7 @@
-aggiungere numerazione progressiva lavorazioni della stessa targa e della stessa persona
-
 aggiungere conferme varie
 
-riepilogo targhe
-
 aggiungere correzione errori 
+
+aggiungere panel altre franco e matteo
+
+aggiungere possibilità di aggiunta veicolo nuovo
