@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Desktop\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj": {}
+    "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\carrdeimille\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Desktop\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj": {
+    "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\carrdeimille\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Desktop\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj",
+        "projectUniqueName": "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\carrdeimille\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj",
         "projectName": "CarrDeiMille",
-        "projectPath": "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Desktop\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj",
+        "projectPath": "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\carrdeimille\\CarrDeiMille\\CarrDeiMille\\CarrDeiMille.csproj",
         "packagesPath": "C:\\Users\\sarah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Desktop\\CarrDeiMille\\CarrDeiMille\\obj\\",
+        "outputPath": "C:\\Users\\sarah\\OneDrive - Politecnico di Milano\\Documenti\\GitHub\\carrdeimille\\CarrDeiMille\\CarrDeiMille\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
