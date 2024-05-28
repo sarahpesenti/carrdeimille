@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
             DIEGO = new ToolStripMenuItem();
             FRANCO = new ToolStripMenuItem();
@@ -37,6 +39,7 @@
             RIEPILOGO = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
             pnlDiego = new Panel();
+            lblNascosta = new Label();
             cmbAvviati = new ComboBox();
             lblVeicoloSelezionato = new Label();
             btnFine = new Button();
@@ -44,9 +47,18 @@
             label2 = new Label();
             cmbVeicoli = new ComboBox();
             label1 = new Label();
-            lblNascosta = new Label();
+            pnlRiepilogo = new Panel();
+            label3 = new Label();
+            dgvRiepilogo = new DataGridView();
+            colTarga = new DataGridViewTextBoxColumn();
+            colMarca = new DataGridViewTextBoxColumn();
+            colModello = new DataGridViewTextBoxColumn();
+            colColore = new DataGridViewTextBoxColumn();
+            colTempo = new DataGridViewTextBoxColumn();
             menuStrip1.SuspendLayout();
             pnlDiego.SuspendLayout();
+            pnlRiepilogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvRiepilogo).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -55,7 +67,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { DIEGO, FRANCO, MATTEO, toolStripMenuItem1, toolStripMenuItem2, RIEPILOGO, toolStripMenuItem3 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1003, 46);
+            menuStrip1.Size = new Size(1167, 46);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -100,6 +112,7 @@
             RIEPILOGO.Name = "RIEPILOGO";
             RIEPILOGO.Size = new Size(167, 42);
             RIEPILOGO.Text = "RIEPILOGO";
+            RIEPILOGO.Click += RIEPILOGO_Click;
             // 
             // toolStripMenuItem3
             // 
@@ -122,6 +135,16 @@
             pnlDiego.Size = new Size(975, 471);
             pnlDiego.TabIndex = 1;
             pnlDiego.Visible = false;
+            // 
+            // lblNascosta
+            // 
+            lblNascosta.AutoSize = true;
+            lblNascosta.Location = new Point(902, 20);
+            lblNascosta.Name = "lblNascosta";
+            lblNascosta.Size = new Size(60, 25);
+            lblNascosta.TabIndex = 7;
+            lblNascosta.Text = "Diego";
+            lblNascosta.Visible = false;
             // 
             // cmbAvviati
             // 
@@ -196,23 +219,113 @@
             label1.TabIndex = 0;
             label1.Text = "MENU DIEGO";
             // 
-            // lblNascosta
+            // pnlRiepilogo
             // 
-            lblNascosta.AutoSize = true;
-            lblNascosta.Location = new Point(902, 20);
-            lblNascosta.Name = "lblNascosta";
-            lblNascosta.Size = new Size(60, 25);
-            lblNascosta.TabIndex = 7;
-            lblNascosta.Text = "Diego";
-            lblNascosta.Visible = false;
+            pnlRiepilogo.AutoScroll = true;
+            pnlRiepilogo.BackColor = SystemColors.GradientInactiveCaption;
+            pnlRiepilogo.Controls.Add(label3);
+            pnlRiepilogo.Controls.Add(dgvRiepilogo);
+            pnlRiepilogo.Location = new Point(12, 541);
+            pnlRiepilogo.Name = "pnlRiepilogo";
+            pnlRiepilogo.Size = new Size(1028, 453);
+            pnlRiepilogo.TabIndex = 8;
+            pnlRiepilogo.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label3.Location = new Point(27, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(494, 38);
+            label3.TabIndex = 1;
+            label3.Text = "RIEPILOGO TEMPI DI LAVORAZIONE";
+            // 
+            // dgvRiepilogo
+            // 
+            dgvRiepilogo.AllowUserToAddRows = false;
+            dgvRiepilogo.AllowUserToDeleteRows = false;
+            dgvRiepilogo.AllowUserToResizeColumns = false;
+            dgvRiepilogo.AllowUserToResizeRows = false;
+            dgvRiepilogo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvRiepilogo.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvRiepilogo.BackgroundColor = SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvRiepilogo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvRiepilogo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRiepilogo.Columns.AddRange(new DataGridViewColumn[] { colTarga, colMarca, colModello, colColore, colTempo });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvRiepilogo.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvRiepilogo.GridColor = SystemColors.ActiveCaption;
+            dgvRiepilogo.Location = new Point(61, 84);
+            dgvRiepilogo.Name = "dgvRiepilogo";
+            dgvRiepilogo.ReadOnly = true;
+            dgvRiepilogo.RowHeadersVisible = false;
+            dgvRiepilogo.RowHeadersWidth = 62;
+            dgvRiepilogo.RowTemplate.Height = 33;
+            dgvRiepilogo.Size = new Size(868, 346);
+            dgvRiepilogo.TabIndex = 0;
+            // 
+            // colTarga
+            // 
+            colTarga.HeaderText = "TARGA";
+            colTarga.MinimumWidth = 8;
+            colTarga.Name = "colTarga";
+            colTarga.ReadOnly = true;
+            colTarga.Width = 138;
+            // 
+            // colMarca
+            // 
+            colMarca.HeaderText = "MARCA";
+            colMarca.MinimumWidth = 8;
+            colMarca.Name = "colMarca";
+            colMarca.ReadOnly = true;
+            colMarca.Width = 148;
+            // 
+            // colModello
+            // 
+            colModello.HeaderText = "MODELLO";
+            colModello.MinimumWidth = 8;
+            colModello.Name = "colModello";
+            colModello.ReadOnly = true;
+            colModello.Width = 179;
+            // 
+            // colColore
+            // 
+            colColore.HeaderText = "COLORE";
+            colColore.MinimumWidth = 8;
+            colColore.Name = "colColore";
+            colColore.ReadOnly = true;
+            colColore.Width = 154;
+            // 
+            // colTempo
+            // 
+            colTempo.HeaderText = "TEMPO";
+            colTempo.MinimumWidth = 8;
+            colTempo.Name = "colTempo";
+            colTempo.ReadOnly = true;
+            colTempo.Width = 144;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1003, 575);
-            Controls.Add(pnlDiego);
+            ClientSize = new Size(1167, 1017);
+            Controls.Add(pnlRiepilogo);
             Controls.Add(menuStrip1);
+            Controls.Add(pnlDiego);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
@@ -221,6 +334,9 @@
             menuStrip1.PerformLayout();
             pnlDiego.ResumeLayout(false);
             pnlDiego.PerformLayout();
+            pnlRiepilogo.ResumeLayout(false);
+            pnlRiepilogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvRiepilogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -244,5 +360,13 @@
         private ToolStripMenuItem toolStripMenuItem3;
         private ComboBox cmbAvviati;
         private Label lblNascosta;
+        private Panel pnlRiepilogo;
+        private DataGridView dgvRiepilogo;
+        private DataGridViewTextBoxColumn colTarga;
+        private DataGridViewTextBoxColumn colMarca;
+        private DataGridViewTextBoxColumn colModello;
+        private DataGridViewTextBoxColumn colTempo;
+        private Label label3;
+        private DataGridViewTextBoxColumn colColore;
     }
 }
