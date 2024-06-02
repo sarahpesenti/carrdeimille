@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
             DIEGO = new ToolStripMenuItem();
             FRANCO = new ToolStripMenuItem();
@@ -38,6 +38,7 @@
             toolStripMenuItem2 = new ToolStripMenuItem();
             RIEPILOGO = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
+            aGGIUNGIVEICOLOToolStripMenuItem = new ToolStripMenuItem();
             pnlDiego = new Panel();
             lblNascosta = new Label();
             cmbAvviati = new ComboBox();
@@ -48,6 +49,17 @@
             cmbVeicoli = new ComboBox();
             label1 = new Label();
             pnlRiepilogo = new Panel();
+            pnlAggiungi = new Panel();
+            button1 = new Button();
+            textBox3 = new TextBox();
+            label7 = new Label();
+            textBox4 = new TextBox();
+            label8 = new Label();
+            textBox2 = new TextBox();
+            label6 = new Label();
+            textBox1 = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
             label3 = new Label();
             dgvRiepilogo = new DataGridView();
             colTarga = new DataGridViewTextBoxColumn();
@@ -58,13 +70,14 @@
             menuStrip1.SuspendLayout();
             pnlDiego.SuspendLayout();
             pnlRiepilogo.SuspendLayout();
+            pnlAggiungi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRiepilogo).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { DIEGO, FRANCO, MATTEO, toolStripMenuItem1, toolStripMenuItem2, RIEPILOGO, toolStripMenuItem3 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { DIEGO, FRANCO, MATTEO, toolStripMenuItem1, toolStripMenuItem2, RIEPILOGO, toolStripMenuItem3, aGGIUNGIVEICOLOToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1167, 46);
@@ -96,8 +109,8 @@
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(268, 42);
-            toolStripMenuItem1.Text = "                                                ";
+            toolStripMenuItem1.Size = new Size(138, 42);
+            toolStripMenuItem1.Text = "                      ";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // toolStripMenuItem2
@@ -118,6 +131,14 @@
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
             toolStripMenuItem3.Size = new Size(16, 42);
+            // 
+            // aGGIUNGIVEICOLOToolStripMenuItem
+            // 
+            aGGIUNGIVEICOLOToolStripMenuItem.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            aGGIUNGIVEICOLOToolStripMenuItem.Name = "aGGIUNGIVEICOLOToolStripMenuItem";
+            aGGIUNGIVEICOLOToolStripMenuItem.Size = new Size(277, 42);
+            aGGIUNGIVEICOLOToolStripMenuItem.Text = "AGGIUNGI VEICOLO";
+            aGGIUNGIVEICOLOToolStripMenuItem.Click += aGGIUNGIVEICOLOToolStripMenuItem_Click;
             // 
             // pnlDiego
             // 
@@ -231,6 +252,115 @@
             pnlRiepilogo.TabIndex = 8;
             pnlRiepilogo.Visible = false;
             // 
+            // pnlAggiungi
+            // 
+            pnlAggiungi.Controls.Add(button1);
+            pnlAggiungi.Controls.Add(textBox3);
+            pnlAggiungi.Controls.Add(label7);
+            pnlAggiungi.Controls.Add(textBox4);
+            pnlAggiungi.Controls.Add(label8);
+            pnlAggiungi.Controls.Add(textBox2);
+            pnlAggiungi.Controls.Add(label6);
+            pnlAggiungi.Controls.Add(textBox1);
+            pnlAggiungi.Controls.Add(label5);
+            pnlAggiungi.Controls.Add(label4);
+            pnlAggiungi.Location = new Point(1007, 73);
+            pnlAggiungi.Name = "pnlAggiungi";
+            pnlAggiungi.Size = new Size(747, 292);
+            pnlAggiungi.TabIndex = 2;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(520, 140);
+            button1.Name = "button1";
+            button1.Size = new Size(196, 62);
+            button1.TabIndex = 9;
+            button1.Text = "AGGIUNGI";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            textBox3.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox3.Location = new Point(232, 229);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(250, 45);
+            textBox3.TabIndex = 8;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(83, 229);
+            label7.Name = "label7";
+            label7.Size = new Size(118, 38);
+            label7.TabIndex = 7;
+            label7.Text = "COLORE";
+            // 
+            // textBox4
+            // 
+            textBox4.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox4.Location = new Point(232, 179);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(250, 45);
+            textBox4.TabIndex = 6;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(83, 179);
+            label8.Name = "label8";
+            label8.Size = new Size(143, 38);
+            label8.TabIndex = 5;
+            label8.Text = "MODELLO";
+            // 
+            // textBox2
+            // 
+            textBox2.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox2.Location = new Point(232, 127);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(250, 45);
+            textBox2.TabIndex = 4;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(83, 127);
+            label6.Name = "label6";
+            label6.Size = new Size(112, 38);
+            label6.TabIndex = 3;
+            label6.Text = "MARCA";
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(232, 77);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(250, 45);
+            textBox1.TabIndex = 2;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(83, 77);
+            label5.Name = "label5";
+            label5.Size = new Size(102, 38);
+            label5.TabIndex = 1;
+            label5.Text = "TARGA";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(15, 15);
+            label4.Name = "label4";
+            label4.Size = new Size(340, 38);
+            label4.TabIndex = 0;
+            label4.Text = "MENU AGGIUNTA VEICOLI";
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -250,24 +380,24 @@
             dgvRiepilogo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvRiepilogo.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvRiepilogo.BackgroundColor = SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvRiepilogo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvRiepilogo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvRiepilogo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRiepilogo.Columns.AddRange(new DataGridViewColumn[] { colTarga, colMarca, colModello, colColore, colTempo });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvRiepilogo.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvRiepilogo.DefaultCellStyle = dataGridViewCellStyle4;
             dgvRiepilogo.GridColor = SystemColors.ActiveCaption;
             dgvRiepilogo.Location = new Point(61, 84);
             dgvRiepilogo.Name = "dgvRiepilogo";
@@ -322,7 +452,8 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1167, 1017);
+            ClientSize = new Size(1167, 1050);
+            Controls.Add(pnlAggiungi);
             Controls.Add(pnlRiepilogo);
             Controls.Add(menuStrip1);
             Controls.Add(pnlDiego);
@@ -336,6 +467,8 @@
             pnlDiego.PerformLayout();
             pnlRiepilogo.ResumeLayout(false);
             pnlRiepilogo.PerformLayout();
+            pnlAggiungi.ResumeLayout(false);
+            pnlAggiungi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRiepilogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -368,5 +501,17 @@
         private DataGridViewTextBoxColumn colTempo;
         private Label label3;
         private DataGridViewTextBoxColumn colColore;
+        private ToolStripMenuItem aGGIUNGIVEICOLOToolStripMenuItem;
+        private Panel pnlAggiungi;
+        private Button button1;
+        private TextBox textBox3;
+        private Label label7;
+        private TextBox textBox4;
+        private Label label8;
+        private TextBox textBox2;
+        private Label label6;
+        private TextBox textBox1;
+        private Label label5;
+        private Label label4;
     }
 }

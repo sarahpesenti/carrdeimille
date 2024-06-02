@@ -344,5 +344,11 @@ namespace CarrDeiMille
 
 
         }
+
+        private void aGGIUNGIVEICOLOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pnlAggiungi.Show();
+            pnlAggiungi.Visible = true;
+        }
     }
 }

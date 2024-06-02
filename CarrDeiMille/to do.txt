@@ -5,3 +5,11 @@ aggiungere correzione errori
 aggiungere panel altre franco e matteo
 
 aggiungere possibilità di aggiunta veicolo nuovo
+
+
+- aggiungere fine lavorazione 12.30 - 19.30
+- se non è stata chiusa manualmente si modifica con riepilogo per persona evidenziato in rosso
+- se inizia una nuova chiude automaticamente il precedente
+- se inizia il giorno successivo chiude la precedente
+
+- 
