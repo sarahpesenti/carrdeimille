@@ -298,12 +298,8 @@ namespace CarrDeiMille
             aggiornacmb();
         }
 
-        private void RIEPILOGO_Click(object sender, EventArgs e)
+        public void aggiornaDGV()
         {
-            pnlRiepilogo.Show();
-            pnlRiepilogo.Visible = true;
-            dgvRiepilogo.Rows.Clear();
-
             int dimVeicoli = dimFile("veicoli");
             string[] veic = new string[dimVeicoli];
             caricadafile("veicoli", veic);
@@ -340,15 +336,49 @@ namespace CarrDeiMille
 
                 }
             }
+            }
+        private void RIEPILOGO_Click(object sender, EventArgs e)
+        {
+            pnlRiepilogo.Show();
+            pnlRiepilogo.Visible = true;
+            dgvRiepilogo.Rows.Clear();
 
-
-
+          
         }
 
         private void aGGIUNGIVEICOLOToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pnlAggiungi.Show();
             pnlAggiungi.Visible = true;
+            pnlDiego.Visible = false;
+            pnlRiepilogo.Visible = false;
+            pnlDiego.Hide();
+            pnlRiepilogo.Hide();
+        }
+
+        private void btnAggiungi_Click(object sender, EventArgs e)
+        {
+            string targa = txtTarga.Text;
+            string marca = txtMarca.Text;
+            string modello = txtModello.Text;
+            string colore = txtColore.Text;
+            int dimVeicoli = dimFile("veicoli");
+            string[] veic = new string[dimVeicoli];
+            caricadafile("veicoli", veic);
+            string nuovo = "" + targa.ToUpper() + ";" + marca + ";" + modello + ";" + colore + ";0;";
+            StreamWriter file_out;
+            file_out = new StreamWriter("veicoli");
+            for (int r = 0; r < dimVeicoli; r++)
+            {
+                file_out.WriteLine(veic[r]);    
+            }
+            file_out.WriteLine(nuovo);
+            file_out.Close();
+            pnlAggiungi.Visible = false;
+            pnlAggiungi.Hide();
+            aggiornaDGV();
+            pnlRiepilogo.Visible = true;
+            pnlRiepilogo.Show();
         }
     }
 }
