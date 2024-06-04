@@ -21,10 +21,31 @@ namespace CarrDeiMille
             pnlDiego.Show();
             btnInizio.Enabled = false;
             btnFine.Enabled = false;
+            pnlAggiungi.Visible = false;
+            pnlAggiungi.Hide();
+            pnlRiepilogo.Visible = false;
+            pnlRiepilogo.Hide();
         }
 
         private void btnInizio_Click(object sender, EventArgs e)
         {
+            //controllo se non ce n'è già una aperta dello stesso operaio,
+            //altrimenti in base all'orario si chiude la precedente e si avvia la nuova
+            int dimLavorazioni = dimFile("lavorazioni");
+            string[] lav = new string[dimLavorazioni];
+            caricadafile("lavorazioni", lav);
+            for(int i =0; i<dimLavorazioni; i++)
+            {
+                string[] s = lav[i].Split(';');
+                if (s[2].Equals(lblNascosta.Text))
+                {
+                    //impostare la fine di questa lav in base all'orario attuale,
+                    //altrimenti tutta la roba sotto normale
+                }
+            }
+
+
+
             string targa;
             if (cmbVeicoli.SelectedItem != "")
             {
@@ -91,6 +112,16 @@ namespace CarrDeiMille
         //aggiorna combobox
         public void aggiornacmb()
         {
+            cmbVeicoli.Items.Clear();
+            int dimVeicoli = dimFile("veicoli");
+            string[] veic = new string[dimVeicoli];
+            caricadafile("veicoli", veic);
+            for (int i = 0; i < dimVeicoli; i++)
+            {
+                cmbVeicoli.Items.Add(veic[i]);
+            }
+
+
             cmbAvviati.Items.Clear();
             int dimLavorazioni = dimFile("lavorazioni");
             string[] lav = new string[dimLavorazioni];
@@ -106,6 +137,46 @@ namespace CarrDeiMille
             }
 
         }
+        public void aggiornaDGV()
+        {
+            int dimVeicoli = dimFile("veicoli");
+            string[] veic = new string[dimVeicoli];
+            caricadafile("veicoli", veic);
+
+            for (int r = 0; r < dimVeicoli; r++)
+            {
+                dgvRiepilogo.Rows.Add();
+                string[] v = veic[r].Split(";");
+
+                for (int c = 0; c < v.Length - 1; c++)
+                {
+                    int ore = 0;
+                    int min = 0;
+                    if (c == 4)
+                    {
+                        if (Convert.ToInt32(v[c]) > 60)
+                        {
+                            ore = Convert.ToInt32(v[c]) / 60;
+                            min = Convert.ToInt32(v[c]) - ore * 60;
+                        }
+                        if (ore == 1)
+                        {
+                            dgvRiepilogo.Rows[r].Cells[c].Value = ore + " ora e " + min + " minuti";
+                        }
+                        else
+                        {
+                            dgvRiepilogo.Rows[r].Cells[c].Value = ore + " ore e " + min + " minuti";
+                        }
+                    }
+                    else
+                    {
+                        dgvRiepilogo.Rows[r].Cells[c].Value = v[c];
+                    }
+
+                }
+            }
+        }
+
 
         //riepilogo tempi alla fine di ogni operazione
         public void riepilogotempi()
@@ -296,54 +367,23 @@ namespace CarrDeiMille
         private void Form1_Load(object sender, EventArgs e)
         {
             aggiornacmb();
+            
         }
 
-        public void aggiornaDGV()
-        {
-            int dimVeicoli = dimFile("veicoli");
-            string[] veic = new string[dimVeicoli];
-            caricadafile("veicoli", veic);
-
-            for (int r = 0; r < dimVeicoli; r++)
-            {
-                dgvRiepilogo.Rows.Add();
-                string[] v = veic[r].Split(";");
-
-                for (int c = 0; c < v.Length - 1; c++)
-                {
-                    int ore = 0;
-                    int min = 0;
-                    if (c == 4)
-                    {
-                        if (Convert.ToInt32(v[c]) > 60)
-                        {
-                            ore = Convert.ToInt32(v[c]) / 60;
-                            min = Convert.ToInt32(v[c]) - ore * 60;
-                        }
-                        if (ore == 1)
-                        {
-                            dgvRiepilogo.Rows[r].Cells[c].Value = ore + " ora e " + min + " minuti";
-                        }
-                        else
-                        {
-                            dgvRiepilogo.Rows[r].Cells[c].Value = ore + " ore e " + min + " minuti";
-                        }
-                    }
-                    else
-                    {
-                        dgvRiepilogo.Rows[r].Cells[c].Value = v[c];
-                    }
-
-                }
-            }
-            }
+        
         private void RIEPILOGO_Click(object sender, EventArgs e)
         {
-            pnlRiepilogo.Show();
-            pnlRiepilogo.Visible = true;
+            
             dgvRiepilogo.Rows.Clear();
-
-          
+            pnlRiepilogo.Visible = true;
+            aggiornaDGV();
+            aggiornacmb();
+            pnlRiepilogo.Show();
+           
+            pnlDiego.Visible = false;
+            pnlDiego.Hide();
+            pnlAggiungi.Visible = false;
+            pnlAggiungi.Hide();
         }
 
         private void aGGIUNGIVEICOLOToolStripMenuItem_Click(object sender, EventArgs e)
@@ -367,10 +407,10 @@ namespace CarrDeiMille
             caricadafile("veicoli", veic);
             string nuovo = "" + targa.ToUpper() + ";" + marca + ";" + modello + ";" + colore + ";0;";
             StreamWriter file_out;
-            file_out = new StreamWriter("veicoli");
+            file_out = new StreamWriter("files/veicoli.txt");
             for (int r = 0; r < dimVeicoli; r++)
             {
-                file_out.WriteLine(veic[r]);    
+                file_out.WriteLine(veic[r]);
             }
             file_out.WriteLine(nuovo);
             file_out.Close();
@@ -379,6 +419,9 @@ namespace CarrDeiMille
             aggiornaDGV();
             pnlRiepilogo.Visible = true;
             pnlRiepilogo.Show();
+            
+            aggiornacmb();
+            MessageBox.Show("Veicolo aggiunto!");
         }
     }
 }

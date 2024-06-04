@@ -12,4 +12,4 @@ aggiungere possibilità di aggiunta veicolo nuovo
 - se inizia una nuova chiude automaticamente il precedente
 - se inizia il giorno successivo chiude la precedente
 
-- 
+- sistemare calcolo ore come differenza lavorazioni (ad ora ogni volta che lo ricalcola lo somma al precedente) forse non ha senso ci sia già memorizzato nel file quante di lavorazione ma solo direttamente il calcolo nella dgv ha senso

@@ -224,7 +224,6 @@
             // 
             cmbVeicoli.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             cmbVeicoli.FormattingEnabled = true;
-            cmbVeicoli.Items.AddRange(new object[] { "AB123CD;Fiat;Punto;Rosso;120", "EF456GH;Ford;Focus;Blu;90", "IJ789KL;Toyota;Corolla;Nero;100", "MN012OP;Volkswagen;Golf;Bianco;110", "QR345ST;Renault;Clio;Grigio;80", "UV678WX;BMW;Serie 3;Argento;130", "YZ901AB;Audi;A4;Blu scuro;140", "CD234EF;Mercedes;Classe C;Nero;150", "GH567IJ;Peugeot;308;Rosso;95", "KL890MN;Honda;Civic;Bianco;105" });
             cmbVeicoli.Location = new Point(64, 137);
             cmbVeicoli.Name = "cmbVeicoli";
             cmbVeicoli.Size = new Size(540, 46);
