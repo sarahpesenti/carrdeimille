@@ -30,3 +30,7 @@ C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\Ca
 C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\CarrDeiMille\CarrDeiMille\obj\Debug\net6.0-windows\CarrDeiMille.pdb
 C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\CarrDeiMille\CarrDeiMille\obj\Debug\net6.0-windows\CarrDeiMille.genruntimeconfig.cache
 C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\CarrDeiMille\CarrDeiMille\obj\Debug\net6.0-windows\ref\CarrDeiMille.dll
+C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\CarrDeiMille\CarrDeiMille\obj\Debug\net6.0-windows\CarrDeiMille.Properties.Resources.resources
+C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\CarrDeiMille\CarrDeiMille\obj\Debug\net6.0-windows\CarrDeiMille.Form2.resources
+C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\CarrDeiMille\CarrDeiMille\obj\Debug\net6.0-windows\CarrDeiMille.Nuovo.resources
+C:\Users\sarah\OneDrive - Politecnico di Milano\Documenti\GitHub\carrdeimille\CarrDeiMille\CarrDeiMille\obj\Debug\net6.0-windows\CarrDeiMille.Veicoli.resources

@@ -1,6 +1,7 @@
 using System.Configuration;
 using System.Linq.Expressions;
 using System.Runtime;
+using System.Security.Cryptography;
 
 namespace CarrDeiMille
 {
@@ -11,30 +12,14 @@ namespace CarrDeiMille
             InitializeComponent();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //SBAGLIATO DA ELIMINARE ANCHE DA DESIGNeeeeeeeeeeER
-        }
 
-        private void DIEGO_Click(object sender, EventArgs e)
-        {
-            pnlDiego.Show();
-            btnInizio.Enabled = false;
-            btnFine.Enabled = false;
-            pnlAggiungi.Visible = false;
-            pnlAggiungi.Hide();
-            pnlRiepilogo.Visible = false;
-            pnlRiepilogo.Hide();
-        }
-
-        private void btnInizio_Click(object sender, EventArgs e)
-        {
-            //controllo se non ce n'è già una aperta dello stesso operaio,
-            //altrimenti in base all'orario si chiude la precedente e si avvia la nuova
-            int dimLavorazioni = dimFile("lavorazioni");
+        //controllo se non ce n'è già una aperta dello stesso operaio,
+        //altrimenti in base all'orario si chiude la precedente e si avvia la nuova
+        /*   
+        int dimLavorazioni = dimFile("lavorazioni");
             string[] lav = new string[dimLavorazioni];
             caricadafile("lavorazioni", lav);
-            for(int i =0; i<dimLavorazioni; i++)
+            for (int i = 0; i < dimLavorazioni; i++)
             {
                 string[] s = lav[i].Split(';');
                 if (s[2].Equals(lblNascosta.Text))
@@ -49,7 +34,7 @@ namespace CarrDeiMille
             string targa;
             if (cmbVeicoli.SelectedItem != "")
             {
-
+                /*
                 string selezionato = cmbVeicoli.SelectedItem.ToString();
                 DateTime inizio = DateTime.Now;
                 string[] s = selezionato.Split(";");
@@ -69,114 +54,80 @@ namespace CarrDeiMille
                 {
                     file_out.WriteLine(lav[i]);
                 }
-
-
+             
                 file_out.WriteLine("" + targa + ";" + numlav + ";" + lblNascosta.Text + ";" + inizio + ";;");
 
                 file_out.Close();
+   */
 
+        /*
 
-                cmbVeicoli.Text = "";
-                btnInizio.Enabled = false;
-                btnFine.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("SELEZIONA UN VEICOLO!");
-            }
-
-
-            aggiornacmb();
-            riepilogotempi();
-
-        }
-
-        //conta lavorazioni relative ad una certa targa
-        public int contalav(string targa)
-        {
-            int n = 0;
-            int dimLavorazioni = dimFile("lavorazioni");
-            string[] lav = new string[dimLavorazioni];
-            caricadafile("lavorazioni", lav);
-            for (int i = 0; i < dimLavorazioni; i++)
-            {
-                string[] s = lav[i].Split(";");
-                if (s[0].Equals(targa))
-                {
-                    n += 1;
-                }
-            }
-            return n;
-        }
-
-        //aggiorna combobox
-        public void aggiornacmb()
-        {
-            cmbVeicoli.Items.Clear();
-            int dimVeicoli = dimFile("veicoli");
-            string[] veic = new string[dimVeicoli];
-            caricadafile("veicoli", veic);
-            for (int i = 0; i < dimVeicoli; i++)
-            {
-                cmbVeicoli.Items.Add(veic[i]);
-            }
-
-
-            cmbAvviati.Items.Clear();
-            int dimLavorazioni = dimFile("lavorazioni");
-            string[] lav = new string[dimLavorazioni];
-            caricadafile("lavorazioni", lav);
-            for (int i = 0; i < dimLavorazioni; i++)
-            {
-
-                string[] s = lav[i].Split(";");
-                if (s[2].Equals(lblNascosta.Text) && s[4].Equals(""))
-                {
-                    cmbAvviati.Items.Add(s[0] + ", inizio: " + s[3] + " - " + s[1]);
-                }
-            }
-
-        }
-        public void aggiornaDGV()
-        {
-            int dimVeicoli = dimFile("veicoli");
-            string[] veic = new string[dimVeicoli];
-            caricadafile("veicoli", veic);
-
-            for (int r = 0; r < dimVeicoli; r++)
-            {
-                dgvRiepilogo.Rows.Add();
-                string[] v = veic[r].Split(";");
-
-                for (int c = 0; c < v.Length - 1; c++)
-                {
-                    int ore = 0;
-                    int min = 0;
-                    if (c == 4)
-                    {
-                        if (Convert.ToInt32(v[c]) > 60)
-                        {
-                            ore = Convert.ToInt32(v[c]) / 60;
-                            min = Convert.ToInt32(v[c]) - ore * 60;
-                        }
-                        if (ore == 1)
-                        {
-                            dgvRiepilogo.Rows[r].Cells[c].Value = ore + " ora e " + min + " minuti";
-                        }
-                        else
-                        {
-                            dgvRiepilogo.Rows[r].Cells[c].Value = ore + " ore e " + min + " minuti";
-                        }
+                        cmbVeicoli.Text = "";
+                        btnInizio.Enabled = false;
+                        btnFine.Enabled = false;
                     }
                     else
                     {
-                        dgvRiepilogo.Rows[r].Cells[c].Value = v[c];
+                        MessageBox.Show("SELEZIONA UN VEICOLO!");
+                    }
+
+
+                    aggiornacmb();
+                    riepilogotempi();
+
+                }
+
+                //conta lavorazioni relative ad una certa targa
+                public int contalav(string targa)
+                {
+                    int n = 0;
+                    int dimLavorazioni = dimFile("lavorazioni");
+                    string[] lav = new string[dimLavorazioni];
+                    caricadafile("lavorazioni", lav);
+                    for (int i = 0; i < dimLavorazioni; i++)
+                    {
+                        string[] s = lav[i].Split(";");
+                        if (s[0].Equals(targa))
+                        {
+                            n += 1;
+                        }
+                    }
+                    return n;
+                }
+
+                //aggiorna combobox
+                public void aggiornacmb()
+                {
+                    cmbVeicoli.Items.Clear();
+                    int dimVeicoli = dimFile("veicoli");
+                    string[] veic = new string[dimVeicoli];
+                    caricadafile("veicoli", veic);
+                    for (int i = 0; i < dimVeicoli; i++)
+                    {
+                        cmbVeicoli.Items.Add(veic[i]);
+                    }
+
+
+                    cmbAvviati.Items.Clear();
+                    int dimLavorazioni = dimFile("lavorazioni");
+                    string[] lav = new string[dimLavorazioni];
+                    caricadafile("lavorazioni", lav);
+                    for (int i = 0; i < dimLavorazioni; i++)
+                    {
+
+                        string[] s = lav[i].Split(";");
+                        if (s[2].Equals(lblNascosta.Text) && s[4].Equals(""))
+                        {
+                            cmbAvviati.Items.Add(s[0] + ", inizio: " + s[3] + " - " + s[1]);
+                        }
                     }
 
                 }
-            }
-        }
 
+        */
+
+
+        /*
 
         //riepilogo tempi alla fine di ogni operazione
         public void riepilogotempi()
@@ -237,63 +188,152 @@ namespace CarrDeiMille
             }
         }
 
-        private void btnFine_Click(object sender, EventArgs e)
-        {
-            if (cmbAvviati.SelectedItem != "")
-            {
+        */
 
-                string selezionato = cmbAvviati.SelectedItem.ToString();
-                DateTime fine = DateTime.Now;
-
-                string[] s = selezionato.Split(",");
-                string targa = s[0];
-                string[] n = s[1].Split(" - ");
-                string nlav = n[1];
-
-                int dimLavorazioni = dimFile("lavorazioni");
-                string[] lav = new string[dimLavorazioni];
-                caricadafile("lavorazioni", lav);
-
-                string nomefile = @"files\lavorazioni.txt";
-                StreamWriter file_out;
-                file_out = new StreamWriter(nomefile);
-                int cont = 0;
-                for (int i = 0; i < dimLavorazioni; i++)
+        /*
+                private void btnFine_Click(object sender, EventArgs e)
                 {
-                    string[] elem = lav[i].Split(";");
-                    if (elem[0].Equals(targa) && elem[1] == nlav && elem[2].Equals("Diego"))
+                    if (cmbAvviati.SelectedItem != "")
                     {
-                        file_out.WriteLine("" + elem[0] + ";" + elem[1] + ";" + elem[2] + ";" + elem[3] + ";" + fine + ";"); ;
-                        cont += 1;
+
+                        string selezionato = cmbAvviati.SelectedItem.ToString();
+                        DateTime fine = DateTime.Now;
+
+                        string[] s = selezionato.Split(",");
+                        string targa = s[0];
+                        string[] n = s[1].Split(" - ");
+                        string nlav = n[1];
+
+                        int dimLavorazioni = dimFile("lavorazioni");
+                        string[] lav = new string[dimLavorazioni];
+                        caricadafile("lavorazioni", lav);
+
+                        string nomefile = @"files\lavorazioni.txt";
+                        StreamWriter file_out;
+                        file_out = new StreamWriter(nomefile);
+                        int cont = 0;
+                        for (int i = 0; i < dimLavorazioni; i++)
+                        {
+                            string[] elem = lav[i].Split(";");
+                            if (elem[0].Equals(targa) && elem[1] == nlav && elem[2].Equals("Diego"))
+                            {
+                                file_out.WriteLine("" + elem[0] + ";" + elem[1] + ";" + elem[2] + ";" + elem[3] + ";" + fine + ";"); ;
+                                cont += 1;
+                            }
+                            else
+                            {
+                                file_out.WriteLine(lav[i]);
+                            }
+
+                        }
+                        if (cont == 0)
+                        {
+                            MessageBox.Show("NON E' MAI STATA AVVIATA LA LAVORAZIONE PER QUESTO VEICOLO");
+                            //possibilità aggiunta manuale delle ore approssimative di lavoro
+                        }
+
+                        //messaggio durata e conferme varie
+                        cmbVeicoli.Text = "";
+                        btnInizio.Enabled = false;
+                        btnFine.Enabled = false;
+
+
+                        file_out.Close();
                     }
                     else
                     {
-                        file_out.WriteLine(lav[i]);
+                        MessageBox.Show("SELEZIONA UN VEICOLO!");
                     }
 
+                    aggiornacmb();
+                    riepilogotempi();
+                    cmbAvviati.Text = "";
                 }
-                if (cont == 0)
+
+               
+        */
+
+
+
+        /*
+                private void cmbVeicoli_SelectedIndexChanged(object sender, EventArgs e)
                 {
-                    MessageBox.Show("NON E' MAI STATA AVVIATA LA LAVORAZIONE PER QUESTO VEICOLO");
-                    //possibilità aggiunta manuale delle ore approssimative di lavoro
+                    if (cmbVeicoli.SelectedItem != "")
+                    {
+                        //controllare sia una di quelle iniziate da Diego!
+                        btnInizio.Enabled = true;
+                    }
                 }
 
-                //messaggio durata e conferme varie
-                cmbVeicoli.Text = "";
-                btnInizio.Enabled = false;
-                btnFine.Enabled = false;
+        */
+        /*
+                private void cmbAvviati_SelectedIndexChanged(object sender, EventArgs e)
+                {
+                    btnInizio.Enabled = false;
+                    btnFine.Enabled = true;
+                }
+
+                private void Form1_Load(object sender, EventArgs e)
+                {
+                    aggiornacmb();
+
+                }
 
 
-                file_out.Close();
-            }
-            else
+                private void RIEPILOGO_Click(object sender, EventArgs e)
+                {
+
+                    dgvRiepilogo.Rows.Clear();
+                    pnlRiepilogo.Visible = true;
+                    aggiornaDGV();
+                    aggiornacmb();
+                    pnlRiepilogo.Show();
+
+                    pnlDiego.Visible = false;
+                    pnlDiego.Hide();
+                    pnlAggiungi.Visible = false;
+                    pnlAggiungi.Hide();
+                }
+
+                private void aGGIUNGIVEICOLOToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    pnlAggiungi.Show();
+                    pnlAggiungi.Visible = true;
+                    pnlDiego.Visible = false;
+                    pnlRiepilogo.Visible = false;
+                    pnlDiego.Hide();
+                    pnlRiepilogo.Hide();
+                }
+        */
+
+
+
+
+        //METODI VARI
+        static void caricadafile(string nome, string[] v)
+        {
+            string nomefile = @"files\" + nome + ".txt";
+            string riga;
+            int k = 0, n;
+            bool fine = false;
+            StreamReader file_in;
+            try
             {
-                MessageBox.Show("SELEZIONA UN VEICOLO!");
-            }
+                file_in = new StreamReader(nomefile);
+                // MessageBox.Show("File aperto");
+                while (!file_in.EndOfStream && !fine)
+                {
+                    riga = file_in.ReadLine();
+                    v[k] = riga;
+                    k++;
 
-            aggiornacmb();
-            riepilogotempi();
-            cmbAvviati.Text = "";
+                }
+                file_in.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("errore " + ex.Message);
+            }
         }
 
         static int dimFile(string nome)
@@ -323,105 +363,30 @@ namespace CarrDeiMille
             }
         }
 
-        static void caricadafile(string nome, string[] v)
-        {
-            string nomefile = @"files\" + nome + ".txt";
-            string riga;
-            int k = 0, n;
-            bool fine = false;
-            StreamReader file_in;
-            try
-            {
-                file_in = new StreamReader(nomefile);
-                // MessageBox.Show("File aperto");
-                while (!file_in.EndOfStream && !fine)
-                {
-                    riga = file_in.ReadLine();
-                    v[k] = riga;
-                    k++;
-
-                }
-                file_in.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("errore " + ex.Message);
-            }
-        }
-
-        private void cmbVeicoli_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbVeicoli.SelectedItem != "")
-            {
-                //controllare sia una di quelle iniziate da Diego!
-                btnInizio.Enabled = true;
-            }
-        }
-
-        private void cmbAvviati_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnInizio.Enabled = false;
-            btnFine.Enabled = true;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            aggiornacmb();
-            
-        }
 
         
-        private void RIEPILOGO_Click(object sender, EventArgs e)
+
+        private void btnNuovo_Click(object sender, EventArgs e)
         {
+            loadform(new Nuovo());
             
-            dgvRiepilogo.Rows.Clear();
-            pnlRiepilogo.Visible = true;
-            aggiornaDGV();
-            aggiornacmb();
-            pnlRiepilogo.Show();
-           
-            pnlDiego.Visible = false;
-            pnlDiego.Hide();
-            pnlAggiungi.Visible = false;
-            pnlAggiungi.Hide();
         }
 
-        private void aGGIUNGIVEICOLOToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            pnlAggiungi.Show();
-            pnlAggiungi.Visible = true;
-            pnlDiego.Visible = false;
-            pnlRiepilogo.Visible = false;
-            pnlDiego.Hide();
-            pnlRiepilogo.Hide();
+        public void loadform(object Form) {
+            if (this.mainpanel.Controls.Count > 0)
+                this.mainpanel.Controls.RemoveAt(0);
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.mainpanel.Controls.Add(f);
+            this.mainpanel.Tag =f;
+            f.Show();
         }
+        
 
-        private void btnAggiungi_Click(object sender, EventArgs e)
+        private void btnVeicoli_Click(object sender, EventArgs e)
         {
-            string targa = txtTarga.Text;
-            string marca = txtMarca.Text;
-            string modello = txtModello.Text;
-            string colore = txtColore.Text;
-            int dimVeicoli = dimFile("veicoli");
-            string[] veic = new string[dimVeicoli];
-            caricadafile("veicoli", veic);
-            string nuovo = "" + targa.ToUpper() + ";" + marca + ";" + modello + ";" + colore + ";0;";
-            StreamWriter file_out;
-            file_out = new StreamWriter("files/veicoli.txt");
-            for (int r = 0; r < dimVeicoli; r++)
-            {
-                file_out.WriteLine(veic[r]);
-            }
-            file_out.WriteLine(nuovo);
-            file_out.Close();
-            pnlAggiungi.Visible = false;
-            pnlAggiungi.Hide();
-            aggiornaDGV();
-            pnlRiepilogo.Visible = true;
-            pnlRiepilogo.Show();
-            
-            aggiornacmb();
-            MessageBox.Show("Veicolo aggiunto!");
+            loadform(new Veicoli());
         }
     }
 }
